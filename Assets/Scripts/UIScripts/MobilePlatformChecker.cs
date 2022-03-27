@@ -8,9 +8,19 @@ public class MobilePlatformChecker : MonoBehaviour
 
     void Awake()
     {
+        EnableMobileControls();
+    }
+
+    public void EnableMobileControls()
+    {
         if (Application.isMobilePlatform)
         {
             mobileControls.gameObject.SetActive(true);
         }
+    }
+
+    public void DisableMobileControls()
+    {
+        mobileControls.gameObject.SetActive(false);
     }
 }
