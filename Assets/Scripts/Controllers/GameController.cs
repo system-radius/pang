@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        if (respawnTimeLimit.value <= 1.0001 && !alive)
+        if (respawnTimeLimit.value <= 0.0001 && !alive)
         {
             // Respawn the player.
             spawnPlayerEvent.Raise();
