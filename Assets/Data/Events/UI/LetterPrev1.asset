@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92a8dcd1a9941542b74eb2a741b8e09, type: 3}
-  m_Name: Lives
+  m_Script: {fileID: 11500000, guid: 641e158dc03669d4094d2bdfe14dcbc8, type: 3}
+  m_Name: LetterPrev1
   m_EditorClassIdentifier: 
-  value: 0
-  defaultValue: 2
