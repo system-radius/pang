@@ -8,14 +8,23 @@
 /// </summary>
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private PlayerInfo mainPlayerInfo = null;
+
+    [SerializeField] private PlayerData respawnTimeLimit = null;
+
     [SerializeField] private GameData gameTimeLimit = null;
 
     [SerializeField] private GameEvent gameOverEvent = null;
 
+    [SerializeField] private GameEvent spawnPlayerEvent = null;
+
     private bool gameOver = false;
+
+    private bool alive = false;
 
     void Start()
     {
+        mainPlayerInfo.Reset();
         Restart();
     }
 
@@ -32,10 +41,51 @@ public class GameController : MonoBehaviour
             gameOverEvent.Raise();
             return;
         }
+
+        if (respawnTimeLimit.value > 0)
+        {
+            // Count down the respawn timer.
+            respawnTimeLimit.value -= Time.deltaTime;
+            // The player is dead, there is no need for further checking.
+            return;
+        }
+
+        if (respawnTimeLimit.value <= 1.0001 && !alive)
+        {
+            // Respawn the player.
+            spawnPlayerEvent.Raise();
+            //Debug.Log("Raise spawn event!");
+        }
     }
 
     private void Restart()
     {
+        // Reset the time limit for the level
         gameTimeLimit.Reset();
+
+        // Call to respawn a player instance.
+        alive = false;
+        respawnTimeLimit.value = 0;
+    }
+
+    public void KillPlayer()
+    {
+        mainPlayerInfo.lives.value--;
+        if (mainPlayerInfo.lives.value < 0)
+        {
+            // Reset the life value to 0 for display purposes.
+            mainPlayerInfo.lives.value = 0;
+            gameOver = true;
+            gameOverEvent.Raise();
+            return;
+        }
+
+        alive = false;
+        respawnTimeLimit.Reset();
+    }
+
+    public void SpawnPlayerSuccess()
+    {
+        alive = true;
     }
 }
