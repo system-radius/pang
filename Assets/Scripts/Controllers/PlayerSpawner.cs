@@ -8,12 +8,16 @@ using UnityEngine;
 /// </summary>
 public class PlayerSpawner : MonoBehaviour
 {
+    // The amount of time that the player cannot be hit.
     [SerializeField] private PlayerData invulTime = null;
 
+    // The event to be triggered on successful spawning of the player.
     [SerializeField] private GameEvent spawnSuccess = null;
 
+    // The player object to be instantiated.
     [SerializeField] private GameObject playerPrefab = null;
 
+    // The point where the player will be spawned.
     [SerializeField] private GameObject spawnPoint = null;
 
     private GameObject playerInstance;
@@ -30,11 +34,21 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
+        // Set the tag of the instance to player, allowing it
+        // to trigger collision events with balls.
         playerInstance.tag = "Player";
+
+        // Also remove the tint to signify that the invulnerability
+        // has been removed.
         playerInstance.GetComponent<SpriteRenderer>().color = Color.white;
+
+        // Flip the switch, so that no more settings will be done for now.
         spawnComplete = true;
     }
 
+    /// <summary>
+    /// Called when the player spawn event is raised.
+    /// </summary>
     public void SpawnPlayer()
     {
 
@@ -59,6 +73,11 @@ public class PlayerSpawner : MonoBehaviour
         spawnSuccess.Raise();
     }
 
+    /// <summary>
+    /// As this component contains the direct reference to the player,
+    /// it is also used to kill the said instance.
+    /// Called when the player killed event is raised.
+    /// </summary>
     public void KillPlayer()
     {
         if (playerInstance != null)

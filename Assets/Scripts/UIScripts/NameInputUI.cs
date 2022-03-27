@@ -32,6 +32,10 @@ public class NameInputUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cycles through the letters in a forward manner.
+    /// </summary>
+    /// <param name="index"></param>
     public void NextLetter(int index)
     {
         positions[index]++;
@@ -39,6 +43,10 @@ public class NameInputUI : MonoBehaviour
         letters[index].text = alphaNum[positions[index]].ToString();
     }
 
+    /// <summary>
+    /// Cycles through the letters in a backward manner,
+    /// </summary>
+    /// <param name="index"></param>
     public void PrevLetter(int index)
     {
         positions[index]--;

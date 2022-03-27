@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private PlayerInfo playerData = null;
 
+    // The possible states of the player.
     [SerializeField] private PlayerState idleState = null;
     [SerializeField] private PlayerState movementState = null;
     [SerializeField] private PlayerState firingState = null;

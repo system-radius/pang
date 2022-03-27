@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A UI script that can play sounds. This can be improved.
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class GameSoundController : MonoBehaviour
 {

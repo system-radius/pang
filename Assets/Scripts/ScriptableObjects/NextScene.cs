@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Scene ID container so that they can be created
-/// and set to various objects.
+/// Scene ID container that can be set to various objects.
+/// Mostly used with the NextSceneLoader component.
 /// </summary>
 [CreateAssetMenu]
 public class NextScene : ScriptableObject

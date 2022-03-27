@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The main source of player's movement.
+/// </summary>
 public class PlayerMovement : PlayerAction
 {
     // The player movement speed.

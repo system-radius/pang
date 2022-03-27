@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// A UI script that intends to display various game data
+/// to text fields.
+/// </summary>
 public class GameDataUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI visualText = null;

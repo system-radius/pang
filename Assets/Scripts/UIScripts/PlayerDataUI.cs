@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// A UI script that intends to display various player data
+/// to text fields.
+/// </summary>
 public class PlayerDataUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI visualText = null;

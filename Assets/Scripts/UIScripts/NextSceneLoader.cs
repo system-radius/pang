@@ -13,7 +13,6 @@ public class NextSceneLoader : MonoBehaviour
     {
         if (scene == null)
         {
-            Debug.LogWarning("Null scene SO!");
             return;
         }
         SceneManager.LoadScene(scene.sceneId);

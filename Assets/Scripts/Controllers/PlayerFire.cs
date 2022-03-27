@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The firing action of the player. Responsible for spawning
+/// the bullet that can pop the balls.
+/// </summary>
 public class PlayerFire : PlayerAction
 {
     // Bullet prefab to be created when doing the firing action.

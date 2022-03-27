@@ -8,32 +8,44 @@
 /// </summary>
 public class GameController : MonoBehaviour
 {
+    // Contains grouped player information.
     [SerializeField] private PlayerInfo mainPlayerInfo = null;
 
+    // The time limit before calling to respawn the player.
     [SerializeField] private PlayerData respawnTimeLimit = null;
 
+    // Data containing the current level.
     [SerializeField] private GameData level = null;
 
+    // The time limit to clear the level before forcing a game over.
     [SerializeField] private GameData gameTimeLimit = null;
 
+    // The event to be raised when reaching a game over state.
     [SerializeField] private GameEvent gameOverEvent = null;
 
+    // The event to be raised when the player should be spawned.
     [SerializeField] private GameEvent spawnPlayerEvent = null;
 
+    // The event to be raised when the level is cleared.
     [SerializeField] private GameEvent nextLevelEvent = null;
 
+    // The ball instance to be spawned.
     [SerializeField] private GameObject ballPrefab = null;
 
+    // The container of all the balls to be spawned.
     [SerializeField] private GameObject container = null;
 
+    // The possible spawn points of the balls.
     [SerializeField] private GameObject[] ballSpawnPoints = null;
 
     private bool gameOver = false;
 
+    // Player status, necessary to avoid redundant spawns.
     private bool alive = false;
 
     void Start()
     {
+        // Reset some of the data to their original value.
         mainPlayerInfo.Reset();
         level.Reset();
         Restart();
@@ -77,12 +89,21 @@ public class GameController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the NextLevelProceed event has been raised.
+    /// </summary>
     public void AdvanceLevel()
     {
+        // Move to the next level.
         level.value++;
         Restart();
     }
 
+    /// <summary>
+    /// Called at every start of the game/level.
+    /// This ensures that a player instance will be spawned right away,
+    /// as well as the balls.
+    /// </summary>
     private void Restart()
     {
         // Reset the time limit for the level
@@ -102,6 +123,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Function to check the existence of the balls
+    /// in the playing field.
+    /// </summary>
+    /// <returns>true if there exists at least 1 ball, false otherwise.</returns>
     private bool DetectBalls()
     {
         bool hasBalls = false;
@@ -122,6 +148,12 @@ public class GameController : MonoBehaviour
         return hasBalls;
     }
 
+    /// <summary>
+    /// "Kills" the player for this controller. This starts
+    /// the countdown for the respawn of the player, or if the player
+    /// has no more lives left, raises the game over event.
+    /// Called when the player killed event has been raised.
+    /// </summary>
     public void KillPlayer()
     {
         // No need to process if player is already dead.
@@ -141,6 +173,10 @@ public class GameController : MonoBehaviour
         respawnTimeLimit.Reset();
     }
 
+    /// <summary>
+    /// Called when the player spawn success event has been raised.
+    /// Prevents the redundant spawning of the player.
+    /// </summary>
     public void SpawnPlayerSuccess()
     {
         alive = true;
