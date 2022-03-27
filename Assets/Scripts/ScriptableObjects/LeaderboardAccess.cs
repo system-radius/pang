@@ -11,7 +11,6 @@ public class LeaderboardAccess : ScriptableObject
 
     public void SaveScore()
     {
-        Debug.Log(playerName.value);
         leaderboard.AddEntry(playerName.value, (int)score.value);
     }
 }

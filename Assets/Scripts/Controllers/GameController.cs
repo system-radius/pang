@@ -92,8 +92,6 @@ public class GameController : MonoBehaviour
         alive = false;
         respawnTimeLimit.value = 0;
 
-        Debug.Log(level.value);
-
         // Spawn the balls for the current level.
         float initialForce = 2.5f;
         for (int i = 0; i < level.value; i++)

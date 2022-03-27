@@ -6671,6 +6671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbb62cffbbd36c468b86b85cba5bfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulTime: {fileID: 11400000, guid: 5e9b5492478473d489fd7deabba0f4c3, type: 2}
   spawnSuccess: {fileID: 11400000, guid: 7caa1954bb55b8841bdd510fa4b60365, type: 2}
   playerPrefab: {fileID: 6247284020644102511, guid: e9adf1ee7b13c524daab20e973eb519e,
     type: 3}

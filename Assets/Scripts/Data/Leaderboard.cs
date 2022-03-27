@@ -33,7 +33,6 @@ public class Leaderboard
     public static Leaderboard Load()
     {
         string json = PlayerPrefs.GetString("Leaderboards", null);
-        Debug.Log(json);
         if (string.IsNullOrEmpty(json))
         {
             return new Leaderboard();
@@ -44,29 +43,13 @@ public class Leaderboard
     public static void Save(Leaderboard leaderboard)
     {
         string json = JsonUtility.ToJson(leaderboard);
-        Debug.Log("Saving: " + json);
         PlayerPrefs.SetString("Leaderboards", json);
     }
 
     public void AddEntry(string name, int score)
     {
-        Debug.Log("Before addition:");
-        foreach (Entry entry in entries)
-        {
-            Debug.Log(entry.name + ": " + entry.score);
-        }
         entries.Add(new Entry { name = name, score = score });
-        Debug.Log("After addition:");
-        foreach (Entry entry in entries)
-        {
-            Debug.Log(entry.name + ": " + entry.score);
-        }
         entries = new List<Entry>(entries.OrderByDescending(entry => entry.score).Take(MAX_ENTRIES));
-        Debug.Log("After sort:");
-        foreach (Entry entry in entries)
-        {
-            Debug.Log(entry.name + ": " + entry.score);
-        }
         Save(this);
     }
 
