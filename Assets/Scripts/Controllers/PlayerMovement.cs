@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerAction
 {
     // The player movement speed.
     [SerializeField] private float playerSpeed = 2.0f;
@@ -27,7 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        if (!CanAct())
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         ProcessInput();
     }
 
@@ -35,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float xVelocity = movement.x * playerSpeed;
         float yVelocity = rb.velocity.y;
+        playerData.movementSpeed.value = Mathf.Abs(xVelocity);
 
         // If the direction of the player and the velocity does not match,
         // flip the character.
