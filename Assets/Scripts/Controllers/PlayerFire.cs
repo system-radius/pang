@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerFire : PlayerAction
 {
     // Bullet prefab to be created when doing the firing action.
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab = null;
 
     // The time limit between firing actions.
     [SerializeField] private float firingTimeLimit = 0.1f;
@@ -76,7 +76,7 @@ public class PlayerFire : PlayerAction
             // This function may have been called to set the variable to false.
             firingTimer = firingTimeLimit;
 
-            if (bullets.Count < maxBullets)
+            if (bullets.Count < maxBullets && bulletPrefab != null)
             {
                 bullets.Add(Instantiate(bulletPrefab, transform.position, Quaternion.identity).transform);
             }

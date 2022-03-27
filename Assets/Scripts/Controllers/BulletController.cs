@@ -2,11 +2,11 @@
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private GameObject anchorPrefab;
+    [SerializeField] private GameObject anchorPrefab = null;
 
-    [SerializeField] private GameObject trailPrefab;
+    [SerializeField] private GameObject trailPrefab = null;
 
-    [SerializeField] private PlayerData scoreData;
+    [SerializeField] private PlayerData scoreData = null;
 
     [SerializeField] private float speed = 15f;
 

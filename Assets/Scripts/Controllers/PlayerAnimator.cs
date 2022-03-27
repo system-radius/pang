@@ -6,11 +6,11 @@
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
-    [SerializeField] private PlayerInfo playerData;
+    [SerializeField] private PlayerInfo playerData = null;
 
-    [SerializeField] private PlayerState idleState;
-    [SerializeField] private PlayerState movementState;
-    [SerializeField] private PlayerState firingState;
+    [SerializeField] private PlayerState idleState = null;
+    [SerializeField] private PlayerState movementState = null;
+    [SerializeField] private PlayerState firingState = null;
 
     private Animator animator;
 

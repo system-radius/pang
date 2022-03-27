@@ -13,7 +13,7 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] protected PlayerInfo playerData;
 
     // Contains all the states where this action can take over.
-    [SerializeField] private PlayerState[] allowedStates;
+    [SerializeField] private PlayerState[] allowedStates = null;
 
     protected bool CanAct()
     {
