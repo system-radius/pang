@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7802334547725324076}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: AnchorPoint
   m_TagString: Bullet
   m_Icon: {fileID: 0}

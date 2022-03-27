@@ -12,11 +12,21 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private PlayerData respawnTimeLimit = null;
 
+    [SerializeField] private GameData level = null;
+
     [SerializeField] private GameData gameTimeLimit = null;
 
     [SerializeField] private GameEvent gameOverEvent = null;
 
     [SerializeField] private GameEvent spawnPlayerEvent = null;
+
+    [SerializeField] private GameEvent nextLevelEvent = null;
+
+    [SerializeField] private GameObject ballPrefab = null;
+
+    [SerializeField] private GameObject container = null;
+
+    [SerializeField] private GameObject[] ballSpawnPoints = null;
 
     private bool gameOver = false;
 
@@ -25,6 +35,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         mainPlayerInfo.Reset();
+        level.Reset();
         Restart();
     }
 
@@ -56,6 +67,20 @@ public class GameController : MonoBehaviour
             spawnPlayerEvent.Raise();
             //Debug.Log("Raise spawn event!");
         }
+
+        // Check the existence of the balls.
+        if (!DetectBalls())
+        {
+            // There are no more balls in the level, and may proceed.
+            //Debug.Log("Level Complete!");
+            nextLevelEvent.Raise();
+        }
+    }
+
+    public void AdvanceLevel()
+    {
+        level.value++;
+        Restart();
     }
 
     private void Restart()
@@ -66,6 +91,37 @@ public class GameController : MonoBehaviour
         // Call to respawn a player instance.
         alive = false;
         respawnTimeLimit.value = 0;
+
+        Debug.Log(level.value);
+
+        // Spawn the balls for the current level.
+        float initialForce = 2.5f;
+        for (int i = 0; i < level.value; i++)
+        {
+            Transform ball = Instantiate(ballPrefab, ballSpawnPoints[i].transform.position, Quaternion.identity, container.transform).transform;
+            ball.GetComponent<Rigidbody2D>().velocity = new Vector2(initialForce, 0);
+            initialForce = -initialForce;
+        }
+    }
+
+    private bool DetectBalls()
+    {
+        bool hasBalls = false;
+
+        foreach (Transform child in container.transform)
+        {
+            if (child != null)
+            {
+                if (child.position.y < -4)
+                {
+                    Destroy(child.gameObject);
+                    continue;
+                }
+                hasBalls = true;
+            }
+        }
+
+        return hasBalls;
     }
 
     public void KillPlayer()
