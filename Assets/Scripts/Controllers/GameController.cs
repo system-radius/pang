@@ -126,6 +126,9 @@ public class GameController : MonoBehaviour
 
     public void KillPlayer()
     {
+        // No need to process if player is already dead.
+        if (!alive) return;
+
         mainPlayerInfo.lives.value--;
         if (mainPlayerInfo.lives.value < 0)
         {
